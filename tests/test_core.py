@@ -1,0 +1,24 @@
+import unittest
+from dulu import OCR
+from PIL import Image
+
+class TestOCR(unittest.TestCase):
+    def setUp(self):
+        self.ocr = OCR()
+        self.image_path = "./sample_image.png"
+        self.image = Image.open(self.image_path)
+
+    def test_recognize_text_without_bbox(self):
+        text = self.ocr.recognize_text(self.image_path, bbox=False)
+        self.assertIsInstance(text, str)
+        self.assertIn("Gareth James", text)
+
+    def test_recognize_text_with_bbox(self):
+        result = self.ocr.recognize_text(self.image_path)
+        self.assertIsInstance(result, dict)
+        self.assertIn('<OCR_WITH_REGION>', result)
+        self.assertIn('labels', result['<OCR_WITH_REGION>'])
+        self.assertIn('Gareth James', result['<OCR_WITH_REGION>']['labels'][0])
+
+if __name__ == '__main__':
+    unittest.main()

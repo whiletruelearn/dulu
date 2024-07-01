@@ -30,8 +30,11 @@ jobs:
       run: |
         python setup.py sdist bdist_wheel
 
-    - name: Upload artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: dist
-        path: dist/
+    - name: Install built package
+      run: |
+        pip install dist/*.tar.gz
+
+    - name: Run tests
+      run: |
+        pip install -r requirements.txt
+        python -m unittest discover -s tests

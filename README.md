@@ -35,6 +35,17 @@ text_with_bbox = ocr.recognize_text("./sample_image.png")
 print(text_with_bbox)
 ```
 
+### List of models 
+
+| Model Id                  | Model size | Model Description                                      |
+|-------------------------|------------|--------------------------------------------------------|
+| Florence-2-base     | 0.23B      | Pretrained model with FLD-5B                           |
+| Florence-2-large    | 0.77B      | Pretrained model with FLD-5B                           |
+| Florence-2-base-ft  | 0.23B      | Finetuned model on a collection of downstream tasks    |
+| Florence-2-large-ft | 0.77B      | Finetuned model on a collection of downstream tasks    |
+
+By default we use `Florence-2-base-ft` model, you can over ride this with any other above in the list when
+instantiating `OCR(model_name="microsoft/{model_id})`
 
 
 ## Acknowledgments

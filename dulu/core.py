@@ -6,10 +6,18 @@ class OCR:
     def __init__(self, model_name='microsoft/Florence-2-base-ft'):
         self.processor , self.model = load_model(model_name)
 
-    def recognize_text(self, image_path, bbox=True):
+    def recognize_text(self, image_input, bbox=True):
+        from PIL import Image
 
         prompt = '<OCR_WITH_REGION>' 
-        image = load_image(image_path)
+
+        if isinstance(image_input, str):
+            image = load_image(image_input)
+        elif isinstance(image_input, Image.Image):
+            image = image_input
+        else:
+            raise ValueError("image_input must be a file path or a PIL image")
+
         inputs = self.processor(text=prompt, images=image, return_tensors="pt")
         generated_ids = self.model.generate(
         input_ids=inputs["input_ids"],
