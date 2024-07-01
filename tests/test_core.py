@@ -10,12 +10,12 @@ class TestOCR(unittest.TestCase):
         self.image = Image.open(requests.get(self.image_url, stream=True).raw)
 
     def test_recognize_text_without_bbox(self):
-        text = self.ocr.recognize_text(self.image_path, bbox=False)
+        text = self.ocr.recognize_text(self.image, bbox=False)
         self.assertIsInstance(text, str)
         self.assertIn("Gareth James", text)
 
     def test_recognize_text_with_bbox(self):
-        result = self.ocr.recognize_text(self.image_path)
+        result = self.ocr.recognize_text(self.image)
         self.assertIsInstance(result, dict)
         self.assertIn('<OCR_WITH_REGION>', result)
         self.assertIn('labels', result['<OCR_WITH_REGION>'])
