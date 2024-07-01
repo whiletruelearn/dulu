@@ -1,11 +1,13 @@
 import unittest
 from dulu import OCR
 from PIL import Image
+import requests
 
 class TestOCR(unittest.TestCase):
     def setUp(self):
         self.ocr = OCR()
-        self.image_path = "./sample_image.png"
+        self.image_url =  "https://github.com/whiletruelearn/dulu/blob/main/tests/sample_image.png?raw=true"
+        self.image = Image.open(requests.get(self.image_url, stream=True).raw)
         self.image = Image.open(self.image_path)
 
     def test_recognize_text_without_bbox(self):
