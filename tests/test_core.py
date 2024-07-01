@@ -7,7 +7,7 @@ class TestOCR(unittest.TestCase):
     def setUp(self):
         self.ocr = OCR()
         self.image_url =  "https://github.com/whiletruelearn/dulu/blob/main/tests/sample_image.png?raw=true"
-        self.image = Image.open(requests.get(self.image_url, stream=True).raw)
+        self.image = Image.open(requests.get(self.image_url, stream=True).raw).convert('RGB')
 
     def test_recognize_text_without_bbox(self):
         text = self.ocr.recognize_text(self.image, bbox=False)
