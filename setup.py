@@ -1,9 +1,9 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
     name='dulu',
-    version='0.1.1',
-    py_modules=['dulu'], 
+    version='0.1.2',
+    packages=find_packages(), 
     install_requires=[
         'numpy',
         'opencv-python',
