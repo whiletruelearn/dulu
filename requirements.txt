@@ -1,0 +1,6 @@
+numpy
+opencv-python
+transformers
+torch
+timm 
+einops
