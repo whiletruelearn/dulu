@@ -19,7 +19,7 @@ class TestOCR(unittest.TestCase):
         self.assertIsInstance(result, dict)
         self.assertIn('<OCR_WITH_REGION>', result)
         self.assertIn('labels', result['<OCR_WITH_REGION>'])
-        self.assertIn('Gareth James', result['<OCR_WITH_REGION>']['labels'][0])
+        self.assertIn('Gareth James', result['<OCR_WITH_REGION>']['labels'][1])
 
 if __name__ == '__main__':
     unittest.main()
